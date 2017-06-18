@@ -4,11 +4,11 @@
 [push]
     default = simple
 [alias]
-    #all = "!f() { ls | xargs -I{} git -C {} $1; }; f"
     all = "!f() { ls -R -d */.git | sed 's,/.git,,' | xargs -I{} git -C {} $1; }; f"
     unstage = reset HEAD
     undo = reset --soft HEAD^
-    back = reset --hard HEAD~
+    back = "!f() { git reset --hard HEAD~$1; }; f"
+    first-ci = "!git log $(git rev-list --max-parents=0 HEAD)"
     fire = "!git commit -a -m 'FIRE' && git push origin fire-branch"
 [color]
     ui = true

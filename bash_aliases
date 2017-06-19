@@ -48,7 +48,7 @@ function make-contrib {
 
 function make-daemon {
     cd "$RING_SRC/daemon"
-    RING_CONF='--prefix="'"${RING_PREFIX}"'"'
+    RING_CONF="--prefix="${RING_PREFIX}""
     f=false
     for i in "$@"
     do

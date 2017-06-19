@@ -58,11 +58,16 @@ function make-daemon {
                 return 0
                 ;;
             clean)
+                ./autogen.sh
+                ./configure
                 make clean
                 return 0
                 ;;
             full)
                 f=true
+                ;;
+            *)
+                RING_CONF+=" "$i
                 ;;
         esac
     done

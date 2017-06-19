@@ -8,8 +8,8 @@
     unstage = reset HEAD
     undo = reset --soft HEAD^
     back = "!f() { git reset --hard HEAD~$1; }; f"
+    blame-file = "!f() { git log -p -M --follow --stat -- $1}; f"
     first-ci = "!git log $(git rev-list --max-parents=0 HEAD)"
-    fire = "!git commit -a -m 'FIRE' && git push origin fire-branch"
 [color]
     ui = true
 [pull]

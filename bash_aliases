@@ -2,50 +2,75 @@
 RING_SRC="$HOME/dev/ring"
 RING_PREFIX="$HOME/ring_install"
 
-function clear-contrib {
-    cd "$RING_SRC/daemon/contrib"
-    if [ -z $1 ]; then
-        if [ ! -e build/Makefile ]; then
-            return 1
-        fi
-        cd build
-        make mostlyclean
-    else
-        for dep in "$@"
-        do
-            rm -f "tarballs/${dep}"*
-            cd build
-            rm -rf "$dep" ".$dep" ".sum-$dep"
-        done
-    fi
-}
-
 function make-contrib {
-    cd "$RING_SRC/daemon/contrib"
-    if [ ! -e build ]; then
-        mkdir build
-    fi
-    cd build
-    if [ -z $1 ]; then
-        make mostlyclean
-        ../bootstrap
-        make list
+    mkdir -p "$RING_SRC/daemon/contrib/native"
+    cd "$RING_SRC/daemon/contrib/native"
+    ../bootstrap
+    clean=false
+    libs=()
+    for i in "$@"
+    do
+        case "$i" in
+            -h | --help)
+                echo "Usage: ${FUNCNAME[0]} [clean|build|full] [libs]"
+                return 0
+                ;;
+            clean)
+                make distclean
+                return 0
+                ;;
+            build)
+                clean=false
+                ;;
+            full)
+                clean=true
+                ;;
+            *)
+                libs+=("$i")
+        esac
+    done
+    if [ ${#libs[@]} -eq 0 ]; then
+        if $clean; then
+            make mostlyclean
+        fi
         make
     else
-        for dep in "$@"
+        for lib in $libs
         do
-            rm -rf "$dep" ".$dep" ".sum-$dep"
-            make ".$dep"
+            if $clean; then
+                rm -f "../tarballs/${lib}"*
+                rm -rf "$lib" ".$lib" ".sum-$lib"
+            fi
+            make ".$lib"
         done
     fi
 }
 
 function make-daemon {
     cd "$RING_SRC/daemon"
+    RING_CONF='--prefix="'"${RING_PREFIX}"'"'
+    f=false
+    for i in "$@"
+    do
+        case "$i" in
+            -h | --help)
+                echo "Usage: ${FUNCNAME[0]} [clean|build|full] [--configuration]"
+                return 0
+                ;;
+            clean)
+                make clean
+                return 0
+                ;;
+            full)
+                f=true
+                ;;
+        esac
+    done
     ./autogen.sh
-    RING_CONF="--prefix="$RING_PREFIX" $@"
     ./configure $RING_CONF
-    make clean
+    if $f; then
+        make clean
+    fi
     make -j
     make install
 }

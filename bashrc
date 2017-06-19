@@ -139,7 +139,7 @@ function battman {
         n=$(upower -i $bat|grep "native-path"|awk '{print $2}')
         s=$(upower -i $bat|grep "state"|awk '{print $2}')
         e=$(upower -i $bat|grep "time to empty"|awk '{print $4 " " $5}')
-        f=$(upower -i $bat|grep "time to full"|awk '{print $4}')
+        f=$(upower -i $bat|grep "time to full"|awk '{print $4 " " $5}')
         p=$(upower -i $bat|grep "percentage"|awk '{print $2}')
         echo "$n: $s ($p)"
         if [[ $s == "discharging" ]]; then

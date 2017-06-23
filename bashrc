@@ -129,7 +129,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 function up() {
-    for i in `seq $1`; do cd ..; done;
+    for i in `seq ${1:-1}`; do cd ..; done;
 }
 
 alias apt-fix-pkg='sudo apt-get update && sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'

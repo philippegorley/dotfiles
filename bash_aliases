@@ -7,6 +7,7 @@ function make-contrib {
     cd "$RING_SRC/daemon/contrib/native"
     ../bootstrap
     clean=false
+    build=true
     libs=()
     for i in "$@"
     do
@@ -16,14 +17,16 @@ function make-contrib {
                 return 0
                 ;;
             clean)
-                make distclean
-                return 0
+                clean=true
+                build=false
                 ;;
             build)
                 clean=false
+                build=true
                 ;;
             full)
                 clean=true
+                build=true
                 ;;
             *)
                 libs+=("$i")
@@ -33,7 +36,9 @@ function make-contrib {
         if $clean; then
             make mostlyclean
         fi
-        make
+        if $build; then
+            make
+        fi
     else
         for lib in $libs
         do
@@ -41,7 +46,9 @@ function make-contrib {
                 rm -f "../tarballs/${lib}"*
                 rm -rf "$lib" ".$lib" ".sum-$lib"
             fi
-            make ".$lib"
+            if $build; then
+                make ".$lib"
+            fi
         done
     fi
 }
@@ -58,8 +65,6 @@ function make-daemon {
                 return 0
                 ;;
             clean)
-                ./autogen.sh
-                ./configure
                 make clean
                 return 0
                 ;;

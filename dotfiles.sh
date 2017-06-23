@@ -32,7 +32,7 @@ function backup() {
 function setup() {
     for file in $files; do
         echo "Creating symlink to $file"
-        ln -s $dir/$file ~/.$file
+        ln -sf $dir/$file ~/.$file
     done
     if $rst; then
         dconf load /org/cinnamon/ < "$dir/cinnamon.conf"

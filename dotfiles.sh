@@ -12,6 +12,7 @@ function usage() {
     echo "  setup         run after git pull"
     echo "  save          run before git push"
     echo "  pull          backup, git stash, git pull, setup"
+    echo "  push          save, git push"
     echo "  --help|-h     show this help and exit"
     echo "  --restart     execute operations that may or may not require a reboot"
     echo "  --no-restart  don't execute operations which may require a reboot (default)"
@@ -49,6 +50,11 @@ function pull() {
     setup
 }
 
+function push() {
+    save
+    git push
+}
+
 rst=false
 for arg in "${@:2}"
 do
@@ -82,6 +88,9 @@ case "$1" in
         ;;
     pull)
         pull
+        ;;
+    push)
+        push
         ;;
     *)
         usage

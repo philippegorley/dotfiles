@@ -153,3 +153,5 @@ function battman {
         fi
     done
 }
+
+export EDITOR='vim'

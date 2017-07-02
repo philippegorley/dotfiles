@@ -14,6 +14,7 @@ filetype indent plugin on
 syntax enable
 set wildmenu
 set showcmd
+set hidden
 set hlsearch
 set ignorecase
 set smartcase

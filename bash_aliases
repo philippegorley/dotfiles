@@ -3,9 +3,6 @@ RING_SRC="$HOME/dev/ring"
 RING_PREFIX="$HOME/ring_install"
 
 function make-contrib {
-    mkdir -p "$RING_SRC/daemon/contrib/native"
-    cd "$RING_SRC/daemon/contrib/native"
-    ../bootstrap
     clean=false
     build=true
     libs=()
@@ -32,6 +29,9 @@ function make-contrib {
                 libs+=("$i")
         esac
     done
+    mkdir -p "$RING_SRC/daemon/contrib/native"
+    cd "$RING_SRC/daemon/contrib/native"
+    ../bootstrap
     if [ ${#libs[@]} -eq 0 ]; then
         if $clean; then
             make mostlyclean
@@ -54,7 +54,6 @@ function make-contrib {
 }
 
 function make-daemon {
-    cd "$RING_SRC/daemon"
     RING_CONF="--prefix="${RING_PREFIX}""
     f=false
     for i in "$@"
@@ -68,6 +67,9 @@ function make-daemon {
                 make clean
                 return 0
                 ;;
+            build)
+                f=false
+                ;;
             full)
                 f=true
                 ;;
@@ -76,6 +78,7 @@ function make-daemon {
                 ;;
         esac
     done
+    cd "$RING_SRC/daemon"
     ./autogen.sh
     ./configure $RING_CONF
     if $f; then

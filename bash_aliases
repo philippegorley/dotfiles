@@ -44,7 +44,7 @@ function make-contrib {
         do
             if $clean; then
                 rm -f "../tarballs/${lib}"*
-                rm -rf "$lib" ".$lib" ".sum-$lib"
+                rm -rf "$lib" ".$lib" ".lib${lib}" ".sum-$lib"
             fi
             if $build; then
                 make ".$lib"

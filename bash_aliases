@@ -88,7 +88,7 @@ function make-daemon {
     make install
 }
 
-alias make-lrc='cd "$RING_SRC/lrc" && rm -rf build && mkdir build && cd build && cmake .. -DRING_BUILD_DIR="$RING_SRC/daemon/src" -DCMAKE_INSTALL_PREFIX="$RING_PREFIX" && make -j8 && make install'
-alias make-client='cd "$RING_SRC/client-gnome" && rm -rf build && mkdir build && cd build && cmake .. -DCMAKE_INSTALL_PREFIX="$RING_PREFIX" && make -j8 && make install'
+alias make-lrc='cd "$RING_SRC/lrc" && rm -rf build && mkdir build && cd build && cmake .. -DRING_BUILD_DIR="$RING_SRC/daemon/src" -DCMAKE_INSTALL_PREFIX="$RING_PREFIX" && make -j8 && make install; cd ..'
+alias make-client='cd "$RING_SRC/client-gnome" && rm -rf build && mkdir build && cd build && cmake .. -DCMAKE_INSTALL_PREFIX="$RING_PREFIX" && make -j8 && make install; cd ..'
 alias ring-daemon='"$RING_PREFIX/lib/ring/dring" -cdp'
 alias ring-gnome='LD_LIBRARY_PATH="$RING_PREFIX/lib/" "$RING_PREFIX/bin/gnome-ring"'

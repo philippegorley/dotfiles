@@ -162,6 +162,8 @@ function make-client-gnome {
         case "$i" in
             -h|--help)
                 echo "Usage: ${FUNCNAME[0]} [clean|build|full]"
+                return 0
+                ;;
             clean)
                 clean=true
                 build=false

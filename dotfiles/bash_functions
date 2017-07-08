@@ -148,7 +148,7 @@ function make-lrc {
     if $build; then
         mkdir -p build
         cd build
-        cmake .. "-DRING_BUILD_DIR=\"$RING_SRC/daemon/src\" -DCMAKE_INSTALL_PREFIX=\"$RING_PREFIX\""
+        cmake .. -DRING_BUILD_DIR="$RING_SRC/daemon/src" -DCMAKE_INSTALL_PREFIX="$RING_PREFIX"
         make -j8
         make install
         cd ..
@@ -185,11 +185,11 @@ function make-client-gnome {
     if $build; then
         mkdir -p build
         cd build
-        cmake .. "-DCMAKE_INSTALL_PREFIX=\"$RING_PREFIX\""
+        cmake .. -DCMAKE_INSTALL_PREFIX="$RING_PREFIX"
         make -j8
         make install
         cd ..
-    fi    
+    fi
 }
 
 # keep these aliases with the gnu ring functions

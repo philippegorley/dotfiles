@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# requires bash 4.0
+# backs up existing files
+# symlinks files
+
+# get directory of this script
+indirect_dir="`dirname $PWD/$0`"
+repo="`(cd \"$indirect_dir\"; pwd -P)`"
+
+# create tarball to backup existing files
+backup=backup.tar
+[ -f "$backup" ] && rm "$backup"
+
+# recurse directory when globbing
+shopt -s globstar
+
+# files to ignore (don't symlink)
+# TODO put dotfiles in subfolder of repo, to remove hardcoded ignored files
+mkdir -pv "$repo/dotfiles"
+for f in $repo/dotfiles/**; do
+    [ -d "$f" ] && continue
+
+    # if file exists in ~, add to tarball
+    file="${f#${repo}/dotfiles/}"
+    if [ -f "$HOME/.$file" ]; then
+        tar -P -rvf $backup "$HOME/.$file"
+    fi
+    
+    # symlink file
+    ln -svf "$f" "$HOME/.$file"
+done
+
+# unset now that we're done
+shopt -u globstar

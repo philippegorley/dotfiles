@@ -2,7 +2,7 @@
 
 dir="$HOME/dev/dotfiles"
 backup="$HOME/dev/dotfiles.bak"
-files="bash_aliases bashrc gitconfig profile vimrc radare2rc"
+files="bash_functions bash_aliases bashrc gitconfig profile vimrc radare2rc"
 mkdir -p $dir
 cd $dir
 

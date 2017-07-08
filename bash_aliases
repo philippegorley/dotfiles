@@ -1,94 +1,27 @@
-# GNU Ring
-RING_SRC="$HOME/dev/ring"
-RING_PREFIX="$HOME/ring_install"
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
-function make-contrib {
-    clean=false
-    build=true
-    libs=()
-    for i in "$@"
-    do
-        case "$i" in
-            -h | --help)
-                echo "Usage: ${FUNCNAME[0]} [clean|build|full] [libs]"
-                return 0
-                ;;
-            clean)
-                clean=true
-                build=false
-                ;;
-            build)
-                clean=false
-                build=true
-                ;;
-            full)
-                clean=true
-                build=true
-                ;;
-            *)
-                libs+=("$i")
-        esac
-    done
-    mkdir -p "$RING_SRC/daemon/contrib/native"
-    cd "$RING_SRC/daemon/contrib/native"
-    ../bootstrap
-    if [ ${#libs[@]} -eq 0 ]; then
-        if $clean; then
-            make mostlyclean
-        fi
-        if $build; then
-            make
-        fi
-    else
-        for lib in $libs
-        do
-            if $clean; then
-                rm -f "../tarballs/${lib}"*
-                rm -rf "$lib" ".$lib" ".lib${lib}" ".sum-$lib"
-            fi
-            if $build; then
-                make ".$lib"
-            fi
-        done
-    fi
-}
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
 
-function make-daemon {
-    RING_CONF="--prefix="${RING_PREFIX}""
-    f=false
-    for i in "$@"
-    do
-        case "$i" in
-            -h | --help)
-                echo "Usage: ${FUNCNAME[0]} [clean|build|full] [--configuration]"
-                return 0
-                ;;
-            clean)
-                make clean
-                return 0
-                ;;
-            build)
-                f=false
-                ;;
-            full)
-                f=true
-                ;;
-            *)
-                RING_CONF+=" "$i
-                ;;
-        esac
-    done
-    cd "$RING_SRC/daemon"
-    ./autogen.sh
-    ./configure $RING_CONF
-    if $f; then
-        make clean
-    fi
-    make -j
-    make install
-}
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
-alias make-lrc='cd "$RING_SRC/lrc" && rm -rf build && mkdir build && cd build && cmake .. -DRING_BUILD_DIR="$RING_SRC/daemon/src" -DCMAKE_INSTALL_PREFIX="$RING_PREFIX" && make -j8 && make install; cd ..'
-alias make-client='cd "$RING_SRC/client-gnome" && rm -rf build && mkdir build && cd build && cmake .. -DCMAKE_INSTALL_PREFIX="$RING_PREFIX" && make -j8 && make install; cd ..'
-alias ring-daemon='"$RING_PREFIX/lib/ring/dring" -cdp'
-alias ring-gnome='LD_LIBRARY_PATH="$RING_PREFIX/lib/" "$RING_PREFIX/bin/gnome-ring"'
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+alias del='trash-put'
+alias rm="echo Use 'del' or the full path i.e. '/bin/rm'"
+alias mkdir="mkdir -pv"
+alias apt-fix-pkg='sudo apt-get update && sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
+alias min-bright="echo 8 | sudo tee /sys/class/backlight/intel_backlight/brightness"
+

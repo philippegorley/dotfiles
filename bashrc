@@ -72,35 +72,16 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# function definitions
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
+# alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -116,10 +97,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias del='trash-put'
-alias rm="echo Use 'del' or the full path i.e. '/bin/rm'"
-alias mkdir="mkdir -pv"
-
+# add color for manpages
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -128,32 +106,6 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-function up() {
-    for i in `seq ${1:-1}`; do cd ..; done;
-}
-
-alias apt-fix-pkg='sudo apt-get update && sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
-
-function battman {
-    for bat in $(upower -e | grep "battery"); do
-        n=$(upower -i $bat|grep "native-path"|awk '{print $2}')
-        s=$(upower -i $bat|grep "state"|awk '{print $2}')
-        e=$(upower -i $bat|grep "time to empty"|awk '{print $4 " " $5}')
-        f=$(upower -i $bat|grep "time to full"|awk '{print $4 " " $5}')
-        p=$(upower -i $bat|grep "percentage"|awk '{print $2}')
-        echo "$n: $s ($p)"
-        if [[ $s == "discharging" ]]; then
-            if [[ -n $e ]]; then
-                echo "    time to empty: $e"
-            fi
-        elif [[ $s == "charging" ]]; then
-            if [[ -n $f ]]; then
-                echo "    time to full: $f"
-            fi
-        fi
-    done
-}
-
+# make vim default editor
 export EDITOR='vim'
 
-alias min-bright="echo 8 | sudo tee /sys/class/backlight/intel_backlight/brightness"

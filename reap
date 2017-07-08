@@ -2,4 +2,4 @@
 
 # backs up configuration not kept in a dotfile (ie cinnamon de configs)
 
-dconf load /org/cinnamon/ < "$dir/cinnamon.conf"
+dconf load /org/cinnamon/ < "`dirname $0`/cinnamon.conf"

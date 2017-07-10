@@ -124,7 +124,7 @@ function make-lrc {
     for i in "$@"; do
         case "$i" in
             -h|--help)
-                echo "Usage: ${FUNCNAME[0]} [clean|build|full]"
+                echo "Usage: ${FUNCNAME[0]} [clean|build|full] [--debug]"
                 return 0
                 ;;
             clean)
@@ -139,6 +139,9 @@ function make-lrc {
                 clean=true
                 build=true
                 ;;
+            --debug)
+                debug="-DCMAKE_BUILD_TYPE=Debug"
+                ;;
         esac
     done
     cd "$RING_SRC/lrc"
@@ -148,7 +151,7 @@ function make-lrc {
     if $build; then
         mkdir -p build
         cd build
-        cmake .. -DRING_BUILD_DIR="$RING_SRC/daemon/src" -DCMAKE_INSTALL_PREFIX="$RING_PREFIX"
+        cmake .. -DRING_BUILD_DIR="$RING_SRC/daemon/src" -DCMAKE_INSTALL_PREFIX="$RING_PREFIX" $debug
         make -j8
         make install
         cd ..
@@ -178,7 +181,7 @@ function make-client-gnome {
                 ;;
         esac
     done
-    cd "$RING_SRC/lrc"
+    cd "$RING_SRC/client-gnome"
     if $clean; then
         rm -rf build
     fi

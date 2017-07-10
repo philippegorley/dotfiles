@@ -20,7 +20,6 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 alias del='trash-put'
-alias rm="echo Use 'del' or the full path i.e. '/bin/rm'"
 alias mkdir="mkdir -pv"
 alias apt-fix-pkg='sudo apt-get update && sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
 alias min-bright="echo 8 | sudo tee /sys/class/backlight/intel_backlight/brightness"

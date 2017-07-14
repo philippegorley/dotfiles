@@ -22,6 +22,15 @@ function battman {
     done
 }
 
+function brightness {
+    if [ -z $1 ]; then
+        cat /sys/class/backlight/intel_backlight/brightness
+    else
+        max=`cat /sys/class/backlight/intel_backlight/max_brightness`
+        bright=`expr $1 \* $max \/ 100`
+        echo $bright | sudo tee /sys/class/backlight/intel_backlight/brightness
+    fi
+}
 
 # GNU Ring
 RING_SRC="$HOME/dev/ring"

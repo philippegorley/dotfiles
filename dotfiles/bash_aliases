@@ -22,7 +22,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias del='trash-put'
 alias mkdir="mkdir -pv"
 alias apt-fix-pkg='sudo apt-get update && sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
-alias min-bright="echo 8 | sudo tee /sys/class/backlight/intel_backlight/brightness"
 
 # ring android
 alias set-ring-arm32='export ANDROID_ABI="armeabi-v7a"'

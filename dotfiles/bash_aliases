@@ -24,8 +24,10 @@ alias mkdir="mkdir -pv"
 alias apt-fix-pkg='sudo apt-get update && sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
 
 # ring android
-alias set-ring-arm32='export ANDROID_ABI="armeabi-v7a"'
-alias set-ring-arm64='export ANDROID_ABI="arm64-v8a"'
-alias set-ring-arm='export ANDROID_ABI="armeabi-v7a arm64-v8a"'
-alias set-ring-intel='export ANDROID_ABI="x86 x86_64"'
-alias set-ring-all='export ANDROID_ABI="armeabi-v7a arm64-v8a x86 x86_64"'
+alias set-ring-arm='export ANDROID_ABI="armeabi-v7a arm64-v8a" && echo "ANDROID_ABI=$ANDROID_ABI"'
+alias set-ring-arm32='export ANDROID_ABI="armeabi-v7a" && echo "ANDROID_ABI=$ANDROID_ABI"'
+alias set-ring-arm64='export ANDROID_ABI="arm64-v8a" && echo "ANDROID_ABI=$ANDROID_ABI"'
+alias set-ring-intel='export ANDROID_ABI="x86 x86_64" && echo "ANDROID_ABI=$ANDROID_ABI"'
+alias set-ring-intel32='export ANDROID_ABI="x86" && echo "ANDROID_ABI=$ANDROID_ABI"'
+alias set-ring-intel64='export ANDROID_ABI="x86_64" && echo "ANDROID_ABI=$ANDROID_ABI"'
+alias set-ring-all='export ANDROID_ABI="armeabi-v7a arm64-v8a x86 x86_64" && echo "ANDROID_ABI=$ANDROID_ABI"'

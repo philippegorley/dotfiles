@@ -207,5 +207,3 @@ function make-client-gnome {
 # keep these aliases with the gnu ring functions
 alias ring-daemon='"$RING_PREFIX/lib/ring/dring" -cdp'
 alias ring-gnome='LD_LIBRARY_PATH="$RING_PREFIX/lib/" "$RING_PREFIX/bin/gnome-ring"'
-
-

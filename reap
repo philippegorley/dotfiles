@@ -1,5 +1,5 @@
 # /usr/bin/env bash
 
-# backs up configuration not kept in a dotfile (ie cinnamon de configs)
+# backs up configuration not kept in a dotfile (ie cinnamon desktop configs)
 
-dconf load /org/cinnamon/ < "`dirname $0`/cinnamon.conf"
+dconf dump /org/cinnamon/ > "`dirname $0`/cinnamon.conf"

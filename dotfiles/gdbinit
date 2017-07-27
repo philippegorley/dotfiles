@@ -1,6 +1,6 @@
 python
-    import os
-    gdb.execute('source '+os.environ.get('HOME','/home/pgorley/')+'dev/gef/.gdbinit-gef.py')
+import os
+gdb.execute('source '+os.environ.get('HOME','/home/pgorley')+'/dev/gef/.gdbinit-gef.py')
 end
 gef config context.enable False
 set disassembly-flavor intel

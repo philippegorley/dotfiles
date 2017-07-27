@@ -22,6 +22,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias del='trash-put'
 alias mkdir="mkdir -pv"
 alias apt-fix-pkg='sudo apt-get update && sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
+alias clear='clear && clear' # clear everything to not interfere with searches
 
 # ring android
 alias set-ring-android-armv7='export ANDROID_ABI="armeabi-v7a" && echo "ANDROID_ABI=$ANDROID_ABI"'

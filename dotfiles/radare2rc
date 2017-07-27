@@ -3,7 +3,7 @@ e asm.cmtright=true # show comments at right of disassembly
 e cmd.stack=true # show stack and register in visual mode
 e scr.utf8=true # non crappy arrows
 e scr.color=true # enable color
-e asm.describe=true # show opcode description
+#e asm.describe=true # show opcode description
 e asm.syntax=intel # don't use at&t syntax
 e dbg.bep=true # break on entry point
 

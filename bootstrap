@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 # requires bash 4.0
-# backs up existing files
-# symlinks files
 
 # get directory of this script
 indirect_dir="`dirname $PWD/$0`"
@@ -15,8 +13,6 @@ backup=backup.tar
 # recurse directory when globbing
 shopt -s globstar
 
-# files to ignore (don't symlink)
-# TODO put dotfiles in subfolder of repo, to remove hardcoded ignored files
 mkdir -pv "$repo/dotfiles"
 for f in $repo/dotfiles/**; do
     [ -d "$f" ] && continue

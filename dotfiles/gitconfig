@@ -9,7 +9,7 @@
     undo = reset --soft HEAD^
     back = "!f() { git reset --hard HEAD~$1; }; f"
     first-ci = "!git log $(git rev-list --max-parents=0 HEAD)"
-    view = "!git diff $1^ $1"
+    view = "!git diff $1^..$1"
 [color]
     ui = true
 [pull]

@@ -122,8 +122,7 @@ function make-daemon {
     if $build; then
         ./autogen.sh
         ./configure $RING_CONF
-        make -j
-        make install
+        make -j install
     fi
 }
 
@@ -161,8 +160,7 @@ function make-lrc {
         mkdir -p build
         cd build
         cmake .. -DRING_BUILD_DIR="$RING_SRC/daemon/src" -DCMAKE_INSTALL_PREFIX="$RING_PREFIX" $debug
-        make -j8
-        make install
+        make -j8 install
         cd ..
     fi
 }
@@ -198,8 +196,7 @@ function make-client-gnome {
         mkdir -p build
         cd build
         cmake .. -DCMAKE_INSTALL_PREFIX="$RING_PREFIX"
-        make -j8
-        make install
+        make -j8 install
         cd ..
     fi
 }

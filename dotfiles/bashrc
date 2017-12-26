@@ -106,6 +106,8 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+export LD_LIBRARY_PATH="$HOME/lib:$LD_LIBRARY_PATH"
+
 # make vim default editor
 export EDITOR='vim'
 
@@ -118,4 +120,7 @@ export PATH=$ANDROID_SDK/platform-tools:${PATH}
 
 # ring android
 export DAEMON_DIR="$HOME/dev/ring/daemon-android"
+
+# ros
+export PATH=/opt/ros/kinetic/include:${PATH}
 source /opt/ros/kinetic/setup.bash

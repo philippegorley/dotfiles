@@ -30,6 +30,8 @@ set number
 set laststatus=2
 set ttimeoutlen=50
 set viminfo+=n~/.vim/viminfo
+set colorcolumn=120
+highlight ColorColumn ctermbg=darkgray
 
 " indentation (4 spaces, no tabs)
 set expandtab
@@ -49,6 +51,7 @@ autocmd InsertEnter * match ForbiddenWhitespace /\t\|\s\+\%#\@<!$/
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_compiler_options=' -std=c++11'
 
 " airline
 let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'
@@ -67,7 +70,7 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
-nnoremap <C-L> :nohl<CR><C-L>
+" search for selected text
 vnoremap // y/<C-R>"<CR>
 
 " workaround for ghost characters on startup

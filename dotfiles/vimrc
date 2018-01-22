@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugins_by_vimplug')
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 Plug 'vim-airline/vim-airline'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 set nocompatible "get rid of vi compatibility
@@ -30,7 +31,6 @@ set number
 set laststatus=2
 set ttimeoutlen=50
 set viminfo+=n~/.vim/viminfo
-set colorcolumn=120
 highlight ColorColumn ctermbg=darkgray
 
 " indentation (4 spaces, no tabs)

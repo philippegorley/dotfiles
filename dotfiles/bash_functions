@@ -77,7 +77,7 @@ function make-contrib {
         for lib in $libs
         do
             if $clean; then
-                rm -f "../tarballs/${lib}"*
+                #rm -f "../tarballs/${lib}"*
                 rm -rf "$lib" ".$lib" ".lib${lib}" ".sum-$lib"
             fi
             if $build; then

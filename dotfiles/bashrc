@@ -106,6 +106,8 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+export CPATH="$HOME/include:$CPATH"
+export LIBRARY_PATH="$HOME/lib:$LIBRARY_PATH"
 export LD_LIBRARY_PATH="$HOME/lib:$LD_LIBRARY_PATH"
 
 # make vim default editor

@@ -118,7 +118,7 @@ function make-daemon {
     done
     cd "$RING_SRC/daemon"
     if $clean; then
-        make clean
+        git clean -xdf --exclude=contrib/
     fi
     if $build; then
         ./autogen.sh

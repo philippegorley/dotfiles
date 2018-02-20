@@ -26,6 +26,7 @@ alias copyimage="xclip -selection clipboard -t image/png -i"
 alias del='trash-put'
 alias mkdir="mkdir -pv"
 alias apt-fix-pkg='sudo apt-get update && sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
+alias apt-update='sudo apt-get update && sudo apt-get upgrade'
 alias clear='clear && clear' # clear everything to not interfere with searches
 
 # ring android

@@ -88,7 +88,6 @@ function make-contrib {
 }
 
 function make-daemon {
-    # TODO don't do autogen and configure if not needed
     RING_CONF="--prefix="${RING_PREFIX}""
     clean=false
     build=true
@@ -121,8 +120,11 @@ function make-daemon {
         git clean -xdf --exclude=contrib/
     fi
     if $build; then
-        ./autogen.sh
-        ./configure --disable-shared $RING_CONF
+        # Reconfigure if Makefile not present
+        if [ ! -f Makefile ]; then
+            ./autogen.sh
+            ./configure --disable-shared $RING_CONF
+        fi
         make -j install
     fi
 }

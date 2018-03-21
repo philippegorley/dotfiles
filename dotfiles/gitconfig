@@ -4,16 +4,16 @@
 [push]
     default = simple
 [alias]
-    all = "!f() { ls -R -d */.git | sed 's,/.git,,' | xargs -I{} -t git -C {} $1; }; f"
-    unstage = reset HEAD
-    undo = reset --soft HEAD^
+    all = "!f() { ls -R -d */.git | sed 's,/.git,,' | xargs -I{} -t git -C {} $@; }; f"
     back = "!f() { git reset --hard HEAD~$1; }; f"
     first-ci = "!git log $(git rev-list --max-parents=0 HEAD)"
+    rpull = pull --rebase
+    undo = reset --soft HEAD^
+    unstage = reset HEAD
     view = "!git diff $1^..$1"
 [color]
     ui = true
 [pull]
-    rebase = true
-
+    rebase = false
 [log]
-	date = iso
+    date = iso

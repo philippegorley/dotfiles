@@ -1,5 +1,4 @@
 eco solarized # solarized theme
-e asm.cmtright=true # show comments at right of disassembly
 e cmd.stack=true # show stack and register in visual mode
 e scr.utf8=true # non crappy arrows
 e scr.color=true # enable color

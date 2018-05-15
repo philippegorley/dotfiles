@@ -46,6 +46,8 @@ highlight ForbiddenWhitespace ctermbg=red guibg=red
 match ForbiddenWhitespace /\s\+$\|\t/
 " do not highlight spaces at the end of line while typing on that line
 autocmd InsertEnter * match ForbiddenWhitespace /\t\|\s\+\%#\@<!$/
+" remove trailing whitespace when saving these file types
+autocmd FileType c,cpp autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " syntastic
 let g:syntastic_always_populate_loc_list = 1

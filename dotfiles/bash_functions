@@ -120,11 +120,8 @@ function make-daemon {
         git clean -xdf --exclude=contrib/
     fi
     if $build; then
-        # Reconfigure if Makefile not present
-        if [ ! -f Makefile ]; then
-            ./autogen.sh
-            ./configure --disable-shared $RING_CONF
-        fi
+        ./autogen.sh
+        ./configure --disable-shared $RING_CONF
         make -j install
     fi
 }

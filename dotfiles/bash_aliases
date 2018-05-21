@@ -35,3 +35,5 @@ alias set-ring-android-armv8='export ANDROID_ABI="arm64-v8a" && echo "ANDROID_AB
 alias set-ring-android-x86='export ANDROID_ABI="x86" && echo "ANDROID_ABI=$ANDROID_ABI"'
 alias set-ring-android-x64='export ANDROID_ABI="x86_64" && echo "ANDROID_ABI=$ANDROID_ABI"'
 alias set-ring-android-all='export ANDROID_ABI="armeabi-v7a arm64-v8a x86 x86_64" && echo "ANDROID_ABI=$ANDROID_ABI"'
+
+alias angr='docker run --rm -it -v $(pwd):/app angr/angr'

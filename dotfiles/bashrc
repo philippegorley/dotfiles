@@ -124,8 +124,5 @@ export PATH=$ANDROID_SDK/platform-tools:${PATH}
 
 # ring android
 export DAEMON_DIR=$HOME/dev/ring/android/daemon/
-# ros
-export PATH=/opt/ros/kinetic/include:${PATH}
-source /opt/ros/kinetic/setup.bash
 
 export PATH="$HOME/.cargo/bin:$PATH"
